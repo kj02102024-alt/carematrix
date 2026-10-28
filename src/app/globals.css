@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --bg: #eef2f6;
+  --bg-grid: rgba(13, 27, 42, 0.045);
+  --surface: #ffffff;
+  --surface-2: #f7f9fb;
+  --surface-3: #eef2f6;
+  --surface-inverse: #0d1b2a;
+  --line: #dde5ec;
+  --line-strong: #c3d0dc;
+  --ink: #0d1b2a;
+  --muted: #58707f;
+  --faint: #8399a8;
+  --brand: #0f766e;
+  --brand-strong: #0b5f59;
+  --brand-soft: rgba(13, 148, 136, 0.12);
+  --brand-line: rgba(13, 148, 136, 0.32);
+  --ok: #0f7a5a;
+  --ok-soft: rgba(16, 185, 129, 0.13);
+  --ok-line: rgba(16, 185, 129, 0.34);
+  --warn: #a25c05;
+  --warn-soft: rgba(245, 158, 11, 0.16);
+  --warn-line: rgba(245, 158, 11, 0.4);
+  --crit: #b4232c;
+  --crit-soft: rgba(244, 63, 94, 0.12);
+  --crit-line: rgba(244, 63, 94, 0.35);
+  --info: #1d5f9e;
+  --info-soft: rgba(56, 132, 208, 0.13);
+  --info-line: rgba(56, 132, 208, 0.34);
+  --ai: #6d3fc4;
+  --ai-soft: rgba(139, 92, 246, 0.13);
+  --ai-line: rgba(139, 92, 246, 0.34);
+  --shadow: 0 1px 2px rgba(13, 27, 42, 0.05), 0 12px 28px -18px rgba(13, 27, 42, 0.24);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #070d14;
+  --bg-grid: rgba(148, 178, 205, 0.06);
+  --surface: #0d1721;
+  --surface-2: #111f2b;
+  --surface-3: #162634;
+  --surface-inverse: #e6eef6;
+  --line: #1d2e3c;
+  --line-strong: #2a4152;
+  --ink: #e7eef6;
+  --muted: #93a9bb;
+  --faint: #6d8598;
+  --brand: #2dd4bf;
+  --brand-strong: #5eead4;
+  --brand-soft: rgba(45, 212, 191, 0.12);
+  --brand-line: rgba(45, 212, 191, 0.34);
+  --ok: #34d399;
+  --ok-soft: rgba(52, 211, 153, 0.13);
+  --ok-line: rgba(52, 211, 153, 0.32);
+  --warn: #fbbf24;
+  --warn-soft: rgba(251, 191, 36, 0.13);
+  --warn-line: rgba(251, 191, 36, 0.32);
+  --crit: #fb7185;
+  --crit-soft: rgba(251, 113, 133, 0.13);
+  --crit-line: rgba(251, 113, 133, 0.34);
+  --info: #7dd3fc;
+  --info-soft: rgba(125, 211, 252, 0.12);
+  --info-line: rgba(125, 211, 252, 0.3);
+  --ai: #c4b5fd;
+  --ai-soft: rgba(167, 139, 250, 0.14);
+  --ai-line: rgba(167, 139, 250, 0.34);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -24px rgba(0, 0, 0, 0.8);
+}
+
+@theme inline {
+  --color-canvas: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-inverse: var(--surface-inverse);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-line: var(--brand-line);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-ok-line: var(--ok-line);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-warn-line: var(--warn-line);
+  --color-crit: var(--crit);
+  --color-crit-soft: var(--crit-soft);
+  --color-crit-line: var(--crit-line);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-line: var(--info-line);
+  --color-ai: var(--ai);
+  --color-ai-soft: var(--ai-soft);
+  --color-ai-line: var(--ai-line);
+  --font-sans: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "SFMono-Regular",
+    Menlo, Consolas, monospace;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+}
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--ink);
+}
+
+.cm-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.cm-panel {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.cm-grid-bg {
+  background-image: radial-gradient(var(--bg-grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.cm-inset {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.cm-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.cm-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.cm-scroll::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+.cm-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+input[type="range"].cm-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--brand) 0%,
+    var(--brand) var(--range-fill, 50%),
+    var(--surface-3) var(--range-fill, 50%),
+    var(--surface-3) 100%
+  );
+  outline: none;
+}
+input[type="range"].cm-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--brand);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+}
+input[type="range"].cm-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--brand);
+  cursor: pointer;
+}
+
+@keyframes cm-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.35);
+  }
+}
+.cm-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: currentColor;
+  animation: cm-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes cm-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cm-rise {
+  animation: cm-rise 0.28s ease-out both;
+}
+
+@keyframes cm-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cm-slide-in {
+  animation: cm-slide-in 0.24s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-rise,
+  .cm-slide-in,
+  .cm-pulse::after {
+    animation: none !important;
+  }
+}
